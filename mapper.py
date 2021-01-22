@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 import sys
+import string
+import os
 
 # import stop words
 from sklearn.feature_extraction import stop_words
-# define stops as set of stop words
 stops = set(stop_words.ENGLISH_STOP_WORDS)
 
 # get all lines from stdin
@@ -13,6 +14,9 @@ for line in sys.stdin:
 
     # lowercase text
     line = line.strip().lower()
+
+    # remove punctuation
+    line = line.translate(None, string.punctuation)
 
     # split the line into words; splits on any whitespace
     words = line.split()
